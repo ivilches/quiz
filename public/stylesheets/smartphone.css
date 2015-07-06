@@ -11,8 +11,22 @@ body {
 	content: "Smartphone Layout";
 }
 
+nav ul li {
+	display: inline;
+	
+}
+
 section {
 	height: 70%;
+}
+
+#info_author img {
+	clear: both;
+	width: 80%;
+}
+
+#info_author > span > span {
+	font-style: italic;
 }
 
 h2 span, section h3 {

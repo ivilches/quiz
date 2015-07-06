@@ -33,7 +33,7 @@ header, nav, section, footer {
 	text-align: center;
 }
 
-nav span {
+nav ul li {
 	margin-right: 10px;
 }
 
@@ -41,4 +41,9 @@ nav span {
 
 a {
   color: #00B7FF;
+  text-decoration: none;
+}
+
+a:hover {
+	color: #FF6666;
 }

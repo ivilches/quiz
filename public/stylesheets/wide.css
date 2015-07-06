@@ -26,6 +26,21 @@ section {
 	height: 70%;
 }
 
+#info_author > img {
+	float: left;
+	width: 8em;
+	height: auto;
+}
+
+#info_author > span {
+	display: inline-block;
+	margin-top: 5%;
+}
+
+#info_author > span > span {
+	font-style: italic;
+}
+
 footer {
 	clear: both;
 }
