@@ -1,0 +1,25 @@
+body {
+	background: #333;
+	font-size: xx-large;
+}
+
+#page-wrap {
+	height: 90vh;
+}
+
+#page-wrap:after {
+	content: "Smartphone Layout";
+}
+
+section {
+	height: 70%;
+}
+
+h2 span, section h3 {
+	display: none;
+}
+
+footer, input {
+	font-size: large;
+}
+
