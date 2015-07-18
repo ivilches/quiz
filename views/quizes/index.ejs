@@ -1,11 +1,16 @@
 <div id="lista_preguntas">
-	<% for (var i=0; i < quizes.length; i++){  %>
-	<ul> 
-		<li> 
-			<a href="quizes/<%= quizes[i].id %>"> <%= quizes[i].pregunta %> </a> 
-		</li>
+	<% if(quizes.length) { 
+		  for (var i=0; i < quizes.length; i++){  %>
+		<ul> 
+			<li> 
+				<a href="quizes/<%= quizes[i].id %>"> <%= quizes[i].pregunta %> </a> 
+			</li>
 		<% } %>
-	</ul>
+		</ul>
+	<% } 
+	 else { %>
+	<span>No hay preguntas referentes a su búsqueda</span>	
+	<% } %>
 </div>
 
 <div id="form_busqueda">

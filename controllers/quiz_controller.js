@@ -32,7 +32,7 @@ exports.index = function(req, res) {
 		var search = "%";
 		search += req.query.search.split(" ").join("%");
 		search += "%"; 
-		where = {where : ["pregunta like ?", search ]};
+		where = {where : ["pregunta ilike ?", search ]};
 
 	}
 
