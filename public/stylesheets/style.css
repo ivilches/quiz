@@ -12,6 +12,10 @@ header, nav, section, footer {
 	display: block;
 }
 
+ul {
+	list-style: none;
+}
+
 #page-wrap {
 	margin: 2% auto;
 	color: #fff;
@@ -46,4 +50,8 @@ a {
 
 a:hover {
 	color: #FF6666;
+}
+
+#info_author > img {
+	border-radius: 20px;
 }

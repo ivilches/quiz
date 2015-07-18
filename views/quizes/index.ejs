@@ -1,7 +1,17 @@
-<table>
+<div id="lista_preguntas">
 	<% for (var i=0; i < quizes.length; i++){  %>
-<tr> <td> 
-	<a href="quizes/<%= quizes[i].id %>"> <%= quizes[i].pregunta %> </a> 
-</td> </tr>
-	<% } %>
-</table>
+	<ul> 
+		<li> 
+			<a href="quizes/<%= quizes[i].id %>"> <%= quizes[i].pregunta %> </a> 
+		</li>
+		<% } %>
+	</ul>
+</div>
+
+<div id="form_busqueda">
+	<form method="get" action="/quizes" >
+		<input type="text" name="search" placeholder="Buscar pregunta" />
+		<input type="submit" value="Buscar" />
+	</form>
+</div>
+
