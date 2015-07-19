@@ -32,7 +32,7 @@ exports.index = function(req, res) {
 		var search = "%";
 		search += req.query.search.split(" ").join("%");
 		search += "%"; 
-		where = {where : ["pregunta ilike ?", search ]};
+		where = {where : ["lower(pregunta) like lower(?)", search ]};
 
 	}
 
@@ -42,7 +42,8 @@ exports.index = function(req, res) {
 			res.render("quizes/index.ejs", {quizes:quizes});
 		}
 	).catch(function(error){
-		next(error);
+		//next(error);
+		console.log(error);
 	});
 };
 
@@ -56,7 +57,7 @@ exports.show = function(req, res) {
 // GET /quizes/:id/answer
 exports.answer = function(req, res) {
 	var resultado = "Incorrecto";
-	if(req.query.respuesta === req.quiz.respuesta) {
+	if(req.query.respuesta.toLowerCase() === req.quiz.respuesta.toLowerCase()) {
 		resultado = "Correcto";
 	}
 	
@@ -70,9 +71,35 @@ exports.answer = function(req, res) {
 	
 };
 
+// GET /quizes/new
+exports.new = function(req, res) {
+	var quiz = models.Quiz.build(
+			{
+				pregunta : "Introduce tu pregunta",
+				respuesta : "Y aquí la respuesta"
+			}
+		);
+	res.render("quizes/new", {quiz : quiz});
+};
 
+// POST /quizes/create
+exports.create = function(req, res) {
+	var quiz = models.Quiz.build(req.body.quiz);
+
+	quiz.save(
+			{
+				fields : ["pregunta", "respuesta"]
+			}
+	)
+	.then(function() {
+		res.redirect("/quizes")
+	});
+
+};
 
 // GET /author
 exports.author = function(req, res){
 	res.render('author', {author : 'Israel Vilches Valle'});
 };
+
+
