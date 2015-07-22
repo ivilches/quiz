@@ -32,25 +32,26 @@ exports.index = function(req, res) {
 		var search = "%";
 		search += req.query.search.split(" ").join("%");
 		search += "%"; 
-		where = {where : ["lower(pregunta) like lower(?)", search ]};
+		where = {where : ["lower(pregunta) like lower(?)", search ], 
+				 order : [["pregunta", "ASC"]]};
 
 	}
 
 
 	models.Quiz.findAll((where)?where:"").then(
 		function(quizes) {
-			res.render("quizes/index.ejs", {quizes:quizes});
+			res.render("quizes/index.ejs", {quizes:quizes, errors : []});
 		}
 	).catch(function(error){
-		//next(error);
-		console.log(error);
+		next(error);
+		//console.log(error);
 	});
 };
 
 
 // GET /quizes/:id
 exports.show = function(req, res) {
-	res.render("quizes/show", {quiz : req.quiz});
+	res.render("quizes/show", {quiz : req.quiz, errors : []});
 	
 };
 
@@ -64,7 +65,8 @@ exports.answer = function(req, res) {
 	res.render("quizes/answer",
 			{
 				quiz : req.quiz,
-				respuesta : resultado
+				respuesta : resultado,
+				errors : []
 			}	
 		);	
 	
@@ -79,27 +81,40 @@ exports.new = function(req, res) {
 				respuesta : "Y aquí la respuesta"
 			}
 		);
-	res.render("quizes/new", {quiz : quiz});
+	res.render("quizes/new", {quiz : quiz, errors : []});
 };
 
 // POST /quizes/create
 exports.create = function(req, res) {
 	var quiz = models.Quiz.build(req.body.quiz);
 
-	quiz.save(
-			{
-				fields : ["pregunta", "respuesta"]
+	quiz
+	.validate()
+	.then(
+		function(err) {
+			if(err) {
+				res.render("quizes/new", {quiz : quiz, errors : err.errors});
 			}
-	)
-	.then(function() {
-		res.redirect("/quizes")
-	});
+			else {
+				quiz
+				.save(
+						{
+							fields : ["pregunta", "respuesta"]
+						}
+				)
+				.then(function() {
+					res.redirect("/quizes");
+				});
+			}
+		}
+	);
+	
 
 };
 
 // GET /author
 exports.author = function(req, res){
-	res.render('author', {author : 'Israel Vilches Valle'});
+	res.render('author', {author : 'Israel Vilches Valle', errors : []});
 };
 
 

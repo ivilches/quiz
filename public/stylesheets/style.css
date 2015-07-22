@@ -55,3 +55,8 @@ a:hover {
 #info_author > img {
 	border-radius: 20px;
 }
+
+#errorMsgs {
+	color: #f61;
+	font-size: .7em;
+}

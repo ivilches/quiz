@@ -21,18 +21,25 @@
 				<li><a href="/">Inicio</a></li>
 				<li><a href="/quizes">Preguntas</a></li>
 				<li><a href="/author">Créditos</a></li>				
-			</ul>
-<!--
-			<span><a href="/">Inicio</a></span>
-			<span><a href="/quizes/question">Preguntas</a></span>
-			<span><a href="/author">Créditos</a>
--->			
+			</ul>		
 		</nav>
 		<section class="main" id="s1">
-			<%- body %>
+			<div>
+				<% if(errors && errors.length) { %>	
+					<span id="errorMsgs">
+						Errores encontrados: 
+						<% for(var i in errors) { %>
+							<span><%= errors[i].message %></span><br/>
+						<% } %>
+					</span>
+				<% }%>
+				<%- body %>
+
+			</div>
 		</section>
 		<footer class="main" id="f1">
-			<a href="https://github.com/ivilches/quiz">Código fuente disponible en GitHub</a>
+			<div><a href="https://es.wikipedia.org/wiki/Quiz">¿Qué es un quiz?</a></div>
+			<div><a href="https://github.com/ivilches/quiz">Código fuente disponible en GitHub</a></div>
 		</footer>
 	</div>
 </body>
