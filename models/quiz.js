@@ -13,11 +13,21 @@ module.exports = function(sequelize, DataTypes) {
 			{
 				pregunta : {
 					type : DataTypes.STRING,
-					validate : {notEmpty : {msg : " -> Falta 'Pregunta'"}}
+					validate : {	notEmpty : {msg : " -> Falta 'Pregunta'"},
+									notIn : {
+										args : [["Introduce la pregunta"]],
+										msg : " -> Falta 'Pregunta'"
+									}
+								}
 				}	,
 				respuesta : {
 					type : DataTypes.STRING,
-					validate : {notEmpty : {msg : " -> Falta 'Respuesta'"}}
+					validate : {	notEmpty : {msg : " -> Falta 'Respuesta'"},
+									notIn : {
+										args : [["Y aquí la respuesta"]],
+										msg : " -> Falta 'Respuesta'"
+									}
+								}
 				}
 			}
 		);

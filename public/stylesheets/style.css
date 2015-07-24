@@ -41,6 +41,9 @@ nav ul li {
 	margin-right: 10px;
 }
 
+#lista_preguntas li {
+	margin-bottom: .8em;
+}
 
 
 a {
@@ -59,4 +62,12 @@ a:hover {
 #errorMsgs {
 	color: #f61;
 	font-size: .7em;
+}
+
+.enlace_boton {
+	font-size: .7em;
+	color: #222;
+	border: 1px solid #222;
+	border-radius: 2px;
+	padding: .2em .5em;
 }
